@@ -14,3 +14,7 @@ input {
 	text-align: left;
 	margin-left: 40%;
 }
+
+.error {
+	color: red;
+}

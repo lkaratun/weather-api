@@ -7,15 +7,30 @@ function App() {
 	const [error, setError] = useState(null);
 	const [city, setCity] = useState('Vancouver');
 
-	async function handleClick() {
-		if (city === '') return setError('Please enter a city name first');
+	function fetchWeather() {
 		const backendUrl = 'http://localhost:3000/weather';
-		const response = await axios.get(backendUrl, { params: { city } }).then(res => res.data);
-		setWeather(response);
+		return axios
+			.get(backendUrl, { params: { city } })
+			.then(res => res.data)
+			.catch(err => {
+				setError(err.response.data.message);
+			});
+	}
+
+	async function handleClick() {
+		setError(null);
+		if (city === '') {
+			setError('Please enter a city name first');
+			setWeather(null);
+			return;
+		}
+
+		const weather = await fetchWeather();
+		setWeather(weather);
 	}
 
 	function renderWeather() {
-		if (weather === null) return null;
+		if (!weather || error) return null;
 		return (
 			<div className="weather">
 				<div>City: {weather.city}</div>
@@ -42,7 +57,7 @@ function App() {
 				<input type="text" id="city-input" value={city} onChange={e => setCity(e.target.value)} />
 			</div>
 			<button onClick={handleClick}>Get current weather</button>
-			{error !== null && <div>{error}</div>}
+			{error !== null && <div className="error">{error}</div>}
 			{renderWeather()}
 		</div>
 	);
