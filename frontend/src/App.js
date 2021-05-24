@@ -2,32 +2,6 @@ import { useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
-const FAKE_WEATHER = {
-	weather: [
-		{
-			id: 804,
-			main: 'Clouds',
-			description: 'overcast clouds',
-			icon: '04d'
-		}
-	],
-	main: {
-		temp: 11.71,
-		feels_like: 11.39,
-		temp_min: 10.57,
-		temp_max: 13.94,
-		pressure: 1016,
-		humidity: 94
-	},
-	wind: {
-		speed: 2.68,
-		deg: 104,
-		gust: 8.05
-	},
-	id: 6173331,
-	name: 'Vancouver'
-};
-
 function App() {
 	const [weather, setWeather] = useState(null);
 	const [error, setError] = useState(null);
@@ -40,6 +14,26 @@ function App() {
 		setWeather(response);
 	}
 
+	function renderWeather() {
+		if (weather === null) return null;
+		return (
+			<div className="weather">
+				<div>City: {weather.city}</div>
+				<div>
+					{weather.descriptionShort} ({weather.descriptionLong})
+				</div>
+				<div>
+					Temperature: {Math.round(weather.temperature.current)}, feels like {Math.round(weather.temperature.feelsLike)}
+					, low {Math.round(weather.temperature.min)}, high {Math.round(weather.temperature.max)}
+				</div>
+				<div>
+					Wind {Math.round(weather.wind.speed)} m/s, gusts up to {Math.round(weather.wind.gust)} m/s
+				</div>
+				<div>Humidity {Math.round(weather.humidity)}%</div>
+			</div>
+		);
+	}
+
 	return (
 		<div className="App">
 			<h1>Weather API</h1>
@@ -49,23 +43,7 @@ function App() {
 			</div>
 			<button onClick={handleClick}>Get current weather</button>
 			{error !== null && <div>{error}</div>}
-			{weather !== null && (
-				<div className="weather">
-					<div>City: {weather.city}</div>
-					<div>
-						{weather.descriptionShort} ({weather.descriptionLong})
-					</div>
-					<div>
-						Temperature: {Math.round(weather.temperature.current)}, feels like{' '}
-						{Math.round(weather.temperature.feelsLike)}, low {Math.round(weather.temperature.min)}, high{' '}
-						{Math.round(weather.temperature.max)}
-					</div>
-					<div>
-						Wind {Math.round(weather.wind.speed)} m/s, gusts up to {Math.round(weather.wind.gust)} m/s
-					</div>
-					<div>Humidity {Math.round(weather.humidity)}%</div>
-				</div>
-			)}
+			{renderWeather()}
 		</div>
 	);
 }
