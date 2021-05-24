@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import axios from 'axios';
-import { pick } from 'lodash-es';
 
 const router = Router();
 
@@ -19,7 +18,20 @@ function fetchWeather(city) {
 }
 
 function cleanUpWeatherData(data) {
-	return pick(data, ['weather', 'main', 'wind', 'id', 'name']);
+	return {
+		id: data.id,
+		city: data.name,
+		descriptionShort: data.weather?.[0]?.main,
+		descriptionLong: data.weather?.[0]?.description,
+		temperature: {
+			current: data.main?.temp,
+			feelsLike: data.main?.feels_like,
+			min: data.main?.temp_min,
+			max: data.main?.temp_max
+		},
+		wind: data.wind,
+		humidity: data.main?.humidity
+	};
 }
 
 router.get('/', async (req, res) => {
