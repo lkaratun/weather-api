@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import './App.css';
 
 const FAKE_WEATHER = {
@@ -29,9 +30,12 @@ const FAKE_WEATHER = {
 
 function App() {
 	const [weather, setWeather] = useState(null);
+	const [city, setCity] = useState('');
 
-	function handleClick() {
-		setWeather(FAKE_WEATHER);
+	async function handleClick() {
+		const backendUrl = 'http://localhost:3000/weather';
+		const response = await axios.get(backendUrl, { params: { city } }).then(res => res.data);
+		setWeather(response);
 	}
 
 	return (
@@ -39,7 +43,7 @@ function App() {
 			<h1>Weather API</h1>
 			<div>
 				<label htmlFor="city-input">City name</label>
-				<input type="text" id="city-input" />
+				<input type="text" id="city-input" value={city} onChange={e => setCity(e.target.value)} />
 			</div>
 			<button onClick={handleClick}>Get current weather</button>
 			<div>Current weather: {JSON.stringify(weather, null, 2)}</div>
