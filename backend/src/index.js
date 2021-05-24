@@ -1,7 +1,10 @@
+import { config } from 'dotenv';
 import compression from 'compression';
 import express from 'express';
 import cors from 'cors';
 import weatherRouter from './routes/weather.js';
+
+config();
 
 const app = express();
 app.use(
