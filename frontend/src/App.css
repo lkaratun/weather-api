@@ -1,3 +1,16 @@
 .App {
 	text-align: center;
 }
+
+button {
+	margin: 10px;
+}
+
+input {
+	margin: 0 10px;
+}
+
+.weather {
+	text-align: left;
+	margin-left: 40%;
+}

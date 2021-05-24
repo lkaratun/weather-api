@@ -1,6 +1,5 @@
 export default function reformatWeatherData(data) {
 	return {
-		id: data.id,
 		city: data.name,
 		descriptionShort: data.weather?.[0]?.main,
 		descriptionLong: data.weather?.[0]?.description,
