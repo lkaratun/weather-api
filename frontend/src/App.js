@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import Weather from './Weather';
 import './App.css';
 
 function App() {
@@ -29,26 +30,6 @@ function App() {
 		setWeather(weather);
 	}
 
-	function renderWeather() {
-		if (!weather || error) return null;
-		return (
-			<div className="weather">
-				<div>City: {weather.city}</div>
-				<div>
-					{weather.descriptionShort} ({weather.descriptionLong})
-				</div>
-				<div>
-					Temperature: {Math.round(weather.temperature.current)}, feels like {Math.round(weather.temperature.feelsLike)}
-					, low {Math.round(weather.temperature.min)}, high {Math.round(weather.temperature.max)}
-				</div>
-				<div>
-					Wind {Math.round(weather.wind.speed)} m/s, gusts up to {Math.round(weather.wind.gust)} m/s
-				</div>
-				<div>Humidity {Math.round(weather.humidity)}%</div>
-			</div>
-		);
-	}
-
 	return (
 		<div className="App">
 			<h1>Weather API</h1>
@@ -57,8 +38,7 @@ function App() {
 				<input type="text" id="city-input" value={city} onChange={e => setCity(e.target.value)} />
 			</div>
 			<button onClick={handleClick}>Get current weather</button>
-			{error !== null && <div className="error">{error}</div>}
-			{renderWeather()}
+			{error ? <div className="error">{error}</div> : <Weather weather={weather} />}
 		</div>
 	);
 }
