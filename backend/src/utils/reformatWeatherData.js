@@ -1,4 +1,4 @@
-export function cleanUpWeatherData(data) {
+export default function reformatWeatherData(data) {
 	return {
 		id: data.id,
 		city: data.name,
