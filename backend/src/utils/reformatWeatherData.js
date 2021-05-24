@@ -1,4 +1,7 @@
 export default function reformatWeatherData(data) {
+	// Don't try to restructure error responses
+	if (data.cod !== 200) return data;
+
 	return {
 		city: data.name,
 		descriptionShort: data.weather?.[0]?.main,

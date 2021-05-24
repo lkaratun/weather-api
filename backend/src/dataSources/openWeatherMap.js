@@ -8,8 +8,9 @@ export function fetchWeather(city) {
 	return axios
 		.get(URL, { params: { ...defaultParams, q: city } })
 		.then(res => res.data)
-		.catch(err => {
-			// Parse error code/message and send it to our error monitoring service
-			throw new Error('Error fetching data from openweathermap');
-		});
+		.catch(
+			err =>
+				// Send the message to our error monitoring service and return its contents
+				err.response.data
+		);
 }
