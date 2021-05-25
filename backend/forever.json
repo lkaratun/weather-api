@@ -1,0 +1,7 @@
+{
+	"uid": "weather-backend",
+	"append": true,
+	"script": "index.js",
+	"sourceDir": "/Users/levkarat/repos/weather-api/backend/src",
+	"command": "node --es-module-specifier-resolution=node"
+}
