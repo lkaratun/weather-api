@@ -1,9 +1,9 @@
 weather.levkaratun.com {
-  reverse_proxy 127.0.0.1:5000
+  reverse_proxy 127.0.0.1:6000
   tls internal
 }
 
 api.weather.levkaratun.com {
-  reverse_proxy 127.0.0.1:5001
+  reverse_proxy 127.0.0.1:6001
   tls internal
 }

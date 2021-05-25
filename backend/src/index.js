@@ -9,12 +9,12 @@ config();
 const app = express();
 app.use(
 	cors({
-		origin: ['https://localhost:5000', 'http://localhost:5000'],
+		origin: ['https://localhost:6000', 'http://localhost:6000'],
 		credentials: true
 	})
 );
 app.use(compression());
 
-app.listen(5001, () => console.log('Server is listening to http requests on port 5001'));
+app.listen(6001, () => console.log('Server is listening to http requests on port 6001'));
 
 app.use('/weather', weatherRouter);
