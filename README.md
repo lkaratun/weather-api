@@ -1,5 +1,22 @@
 # Weather API
 
+### Tech stack
+
+I decided to go with a node.js + React stack for several reasons:
+
+- I'm proficient in both of them
+- JS is well set up to handle asynchronous data flow (e.g. waiting for a response from openweathermap API)
+- node.js is performant and Express.js makes it easy to set up a simple web backend
+- create-react-app allowed me to spin up a simple UI quickly without dealing with webpack and other configuration hurdles
+- Since you use JS with both of them, it's easier to set up developer tooling and deployment since you can reuse some parts of it.
+- Out of the box JSON support
+
+The drawbacks of the tech stack:
+
+- Potential security vulnerabilities given the huge number of sub-dependencies in an average-sized app
+- Not the best performance for CPU-bound tasks (this wasn't applicable for the assignment)
+- Significant amount of boiler-plate code needed to bootstrap a React app if not using create-react-app
+
 ### Date
 
 May 25, 2021
@@ -14,7 +31,7 @@ May 25, 2021
 
 ### Assumptions made
 
-The user will click the "Get current weather" button after submitting the
+User will click the "Get current weather" button after inserting a city name into the input box
 
 ### Shortcuts/Compromises made
 
