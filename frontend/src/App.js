@@ -9,7 +9,7 @@ function App() {
 	const [city, setCity] = useState('Vancouver');
 
 	function fetchWeather() {
-		const backendUrl = 'http://localhost:3000/weather';
+		const backendUrl = 'http://localhost:5001/weather';
 		return axios
 			.get(backendUrl, { params: { city } })
 			.then(res => res.data)
