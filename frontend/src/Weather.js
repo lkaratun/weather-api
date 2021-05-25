@@ -2,7 +2,7 @@ export default function renderWeather({ weather }) {
 	if (!weather) return null;
 
 	return (
-		<div className="weather">
+		<div>
 			<div>City: {weather.city}</div>
 			<div>
 				{weather.descriptionShort} ({weather.descriptionLong})
