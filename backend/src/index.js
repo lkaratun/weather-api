@@ -9,7 +9,7 @@ config();
 const app = express();
 app.use(
 	cors({
-		origin: ['https://localhost:6000', 'http://localhost:6000'],
+		origin: ['https://localhost:6000', 'http://localhost:6000', 'https://weather.levkaratun.com'],
 		credentials: true
 	})
 );
