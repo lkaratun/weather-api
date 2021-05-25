@@ -1,5 +1,5 @@
 {
-	"name": "backend",
+	"name": "weather-backend",
 	"version": "1.0.0",
 	"description": "REST API that provides weather information for a given city",
 	"main": "src/index.js",
