@@ -9,7 +9,7 @@ function App() {
 	const [city, setCity] = useState('Vancouver');
 
 	function fetchWeather() {
-		const backendUrl = 'https://api.weather.levkaratun.com';
+		const backendUrl = 'https://api.weather.levkaratun.com/weather';
 		return axios
 			.get(backendUrl, { params: { city } })
 			.then(res => res.data)
